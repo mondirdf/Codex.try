@@ -8,6 +8,7 @@ const projectCards = document.querySelectorAll('.project-card');
 const projectsStatus = document.getElementById('projectsStatus');
 const contactForm = document.getElementById('contactForm');
 const formFeedback = document.getElementById('formFeedback');
+const formSecondaryCta = document.getElementById('formSecondaryCta');
 const revealItems = document.querySelectorAll('.reveal');
 
 if (navToggle && navLinks) {
@@ -78,33 +79,41 @@ if (contactForm && formFeedback) {
     const message = String(formData.get('message') || '').trim();
 
     formFeedback.className = 'form-feedback';
+    if (formSecondaryCta) {
+      formSecondaryCta.hidden = true;
+      formSecondaryCta.textContent = '';
+    }
 
     if (name.length < 2) {
-      formFeedback.textContent = 'يرجى كتابة اسم صحيح (حرفان على الأقل).';
+      formFeedback.textContent = 'حقل الاسم: اكتب اسمك الحقيقي بحيث لا يقل عن حرفين.';
       formFeedback.classList.add('error');
       return;
     }
 
     if (!email.includes('@') || !email.includes('.')) {
-      formFeedback.textContent = 'يرجى إدخال بريد إلكتروني صحيح.';
+      formFeedback.textContent = 'حقل البريد الإلكتروني: أدخل بريدًا صالحًا مثل name@example.com.';
       formFeedback.classList.add('error');
       return;
     }
 
     if (!service) {
-      formFeedback.textContent = 'يرجى اختيار نوع الخدمة المطلوبة.';
+      formFeedback.textContent = 'حقل نوع الخدمة: اختر الخدمة الأقرب لاحتياج مشروعك.';
       formFeedback.classList.add('error');
       return;
     }
 
     if (message.length < 15) {
-      formFeedback.textContent = 'يرجى كتابة نبذة أوضح عن المشروع (15 حرفًا على الأقل).';
+      formFeedback.textContent = 'حقل نبذة المشروع: أضف تفاصيل أكثر (الهدف، الجمهور، والمدة) بحد أدنى 15 حرفًا.';
       formFeedback.classList.add('error');
       return;
     }
 
     formFeedback.textContent = `شكرًا ${name}، تم استلام طلبك بنجاح وسيتم التواصل معك خلال 24 ساعة.`;
     formFeedback.classList.add('success');
+    if (formSecondaryCta) {
+      formSecondaryCta.innerHTML = 'خطوة إضافية سريعة: تابعنا على المنصات أو أرسل ملفاتك المرجعية إلى <a href="mailto:hello@lianstudio.com">hello@lianstudio.com</a>.';
+      formSecondaryCta.hidden = false;
+    }
     contactForm.reset();
   });
 }

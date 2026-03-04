@@ -229,10 +229,19 @@
           </select>
 
           <label for="message">نبذة عن المشروع</label>
-          <textarea id="message" name="message" rows="4" minlength="15" required></textarea>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            minlength="15"
+            placeholder="اذكر هدف المشروع، الجمهور المستهدف، والنتيجة التي تتوقعها باختصار."
+            required
+          ></textarea>
 
           <button class="btn primary" type="submit">إرسال الطلب</button>
+          <p class="trust-note">🔒 بياناتك سرية ولن تُشارك مع أي طرف ثالث.</p>
           <p class="form-feedback" id="formFeedback" aria-live="polite"></p>
+          <p class="form-secondary-cta" id="formSecondaryCta" hidden></p>
         </form>
       </section>
     </main>
