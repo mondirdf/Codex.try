@@ -4,6 +4,7 @@ const shuffleBtn = document.getElementById('shuffleBtn');
 const projectsGrid = document.getElementById('projectsGrid');
 const filterButtons = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
+const projectsStatus = document.getElementById('projectsStatus');
 const contactForm = document.getElementById('contactForm');
 const formFeedback = document.getElementById('formFeedback');
 const revealItems = document.querySelectorAll('.reveal');
@@ -31,6 +32,10 @@ if (shuffleBtn && projectsGrid) {
     visibleCards
       .sort(() => Math.random() - 0.5)
       .forEach((card) => projectsGrid.appendChild(card));
+
+    if (projectsStatus) {
+      projectsStatus.textContent = `تم ترتيب ${visibleCards.length} مشاريع بشكل عشوائي.`;
+    }
   });
 }
 
@@ -39,14 +44,23 @@ if (filterButtons.length) {
     button.addEventListener('click', () => {
       const filter = button.dataset.filter;
 
-      filterButtons.forEach((btn) => btn.classList.remove('active'));
+      filterButtons.forEach((btn) => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      });
       button.classList.add('active');
+      button.setAttribute('aria-pressed', 'true');
 
       projectCards.forEach((card) => {
         const category = card.dataset.category;
         const shouldShow = filter === 'all' || category === filter;
         card.hidden = !shouldShow;
       });
+
+      if (projectsStatus) {
+        const visibleCount = Array.from(projectCards).filter((card) => !card.hidden).length;
+        projectsStatus.textContent = `تم عرض ${visibleCount} مشاريع ضمن فلتر ${button.textContent?.trim()}.`;
+      }
     });
   });
 }
