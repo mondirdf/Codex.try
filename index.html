@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ليان ستوديو | بورتفوليو مصممة جرافيك</title>
+    <meta
+      name="description"
+      content="بورتفوليو متكامل لمصممة جرافيك: هوية بصرية، سوشال ميديا، تغليف، تصميم حملات، وخدمة متكاملة من الفكرة للتسليم."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">تخطي إلى المحتوى</a>
+
+    <header class="site-header" id="top">
+      <nav class="nav container" aria-label="التنقل الرئيسي">
+        <a class="logo" href="#top">ليان <span>ستوديو</span></a>
+
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-expanded="false"
+          aria-controls="navMenu"
+          aria-label="فتح وإغلاق القائمة"
+          type="button"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-links" id="navMenu">
+          <li><a href="#about">من أنا</a></li>
+          <li><a href="#portfolio">الأعمال</a></li>
+          <li><a href="#services">الخدمات</a></li>
+          <li><a href="#process">آلية العمل</a></li>
+          <li><a href="#contact">تواصل</a></li>
+        </ul>
+      </nav>
+
+      <section class="hero container">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">مصممة جرافيك مستقلة</p>
+          <h1>أصمم تجربة بصرية تُحوّل علامتك إلى قصة لا تُنسى</h1>
+          <p>
+            أقدّم حلول تصميم احترافية للعلامات التجارية الناشئة والمتاجر
+            الإلكترونية: من الشعار والهوية إلى الإعلانات ومنصات التواصل.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#portfolio">استعرض الأعمال</a>
+            <a class="btn ghost" href="#contact">ابدأ مشروعك الآن</a>
+          </div>
+          <ul class="stats" aria-label="إحصائيات الأعمال">
+            <li><strong>+140</strong><span>مشروع مكتمل</span></li>
+            <li><strong>+80</strong><span>عميل سعيد</span></li>
+            <li><strong>98%</strong><span>نسبة رضا العملاء</span></li>
+          </ul>
+        </div>
+
+        <aside class="hero-card reveal" aria-label="نبذة عن آخر مشروع">
+          <h2>آخر مشروع</h2>
+          <p>إعادة تصميم هوية علامة قهوة مختصة مع نظام تعبئة وتغليف كامل.</p>
+
+          <div class="swatches" aria-label="لوحة الألوان">
+            <span style="--swatch:#1f1838"></span>
+            <span style="--swatch:#5d4b8b"></span>
+            <span style="--swatch:#b8a4ff"></span>
+            <span style="--swatch:#f6f2ff"></span>
+          </div>
+
+          <ul class="project-meta">
+            <li><strong>المدة:</strong> 3 أسابيع</li>
+            <li><strong>النطاق:</strong> شعار + تغليف + دليل استخدام</li>
+          </ul>
+        </aside>
+      </section>
+    </header>
+
+    <main id="main-content">
+      <section id="about" class="section container about">
+        <div class="reveal">
+          <p class="section-label">من أنا</p>
+          <h2>أنا ليان، أوازن بين الإبداع والنتائج التسويقية</h2>
+          <p>
+            خبرة +4 سنوات في تصميم الهوية والمحتوى التسويقي. أعمل بمنهج واضح:
+            فهم هدف المشروع، تحليل الجمهور، ثم بناء نظام بصري متماسك يعكس شخصية
+            العلامة ويزيد من تأثيرها.
+          </p>
+        </div>
+
+        <div class="about-cards reveal">
+          <article>
+            <h3>هوية متكاملة</h3>
+            <p>شعار، ألوان، خطوط، وقواعد استخدام موحّدة عبر جميع القنوات.</p>
+          </article>
+          <article>
+            <h3>تصميم قائم على البيانات</h3>
+            <p>أربط كل قرار بصري بهدف تجاري واضح ومؤشرات أداء قابلة للقياس.</p>
+          </article>
+          <article>
+            <h3>تسليم احترافي</h3>
+            <p>ملفات منظمة للطباعة والنشر مع مراجعات مرنة وسرعة في التنفيذ.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="portfolio" class="section portfolio">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <p class="section-label">الأعمال</p>
+              <h2>نماذج مختارة من مشاريع حقيقية</h2>
+            </div>
+            <button class="btn ghost" id="shuffleBtn" type="button">
+              ترتيب عشوائي
+            </button>
+          </div>
+
+          <div class="filters reveal" role="tablist" aria-label="فلترة الأعمال">
+            <button class="filter-btn active" data-filter="all" type="button">الكل</button>
+            <button class="filter-btn" data-filter="branding" type="button">هوية بصرية</button>
+            <button class="filter-btn" data-filter="social" type="button">سوشال ميديا</button>
+            <button class="filter-btn" data-filter="packaging" type="button">تغليف</button>
+          </div>
+
+          <div class="projects-grid" id="projectsGrid">
+            <article class="project-card reveal" data-category="branding">
+              <span class="tag">هوية بصرية</span>
+              <h3>Glow Beauty</h3>
+              <p>هوية أنثوية حديثة لعلامة عناية بالبشرة تستهدف السوق الخليجي.</p>
+            </article>
+            <article class="project-card reveal" data-category="social">
+              <span class="tag">سوشال ميديا</span>
+              <h3>FitFuel Campaign</h3>
+              <p>30 منشورًا إعلانيًا متناسقًا رفعت التفاعل الشهري بنسبة 42%.</p>
+            </article>
+            <article class="project-card reveal" data-category="packaging">
+              <span class="tag">تغليف</span>
+              <h3>Najd Coffee</h3>
+              <p>تصميم عبوات قهوة مختصة بطابع سعودي مع تفاصيل بصرية مميزة.</p>
+            </article>
+            <article class="project-card reveal" data-category="branding">
+              <span class="tag">هوية بصرية</span>
+              <h3>Nova Clinic</h3>
+              <p>نظام هوية متكامل لعيادة جلدية مع دليل استخدام احترافي.</p>
+            </article>
+            <article class="project-card reveal" data-category="social">
+              <span class="tag">سوشال ميديا</span>
+              <h3>Retail Launch Ads</h3>
+              <p>حملة افتتاح متجر إلكتروني مع تصاميم ثابتة ومتحركة.</p>
+            </article>
+            <article class="project-card reveal" data-category="packaging">
+              <span class="tag">تغليف</span>
+              <h3>Bloom Tea</h3>
+              <p>تصميم مجموعة علب شاي فاخرة قابلة للتوسع لعدة نكهات.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="section container">
+        <p class="section-label reveal">الخدمات</p>
+        <h2 class="reveal">باقات مرنة تناسب كل مرحلة من نمو مشروعك</h2>
+        <div class="services-grid">
+          <article class="reveal">
+            <h3>باقة البداية</h3>
+            <p>شعار + لوحة ألوان + خطوط + 2 نماذج تطبيق.</p>
+            <strong>من 1,500 ر.س</strong>
+          </article>
+          <article class="featured reveal">
+            <h3>باقة النمو</h3>
+            <p>هوية كاملة + 15 تصميم سوشال + قوالب قابلة للتعديل.</p>
+            <strong>من 3,200 ر.س</strong>
+          </article>
+          <article class="reveal">
+            <h3>باقة التوسع</h3>
+            <p>هوية + تغليف + خطة بصرية شهرية + تصميمات إعلانية.</p>
+            <strong>من 5,400 ر.س</strong>
+          </article>
+        </div>
+      </section>
+
+      <section id="process" class="section process">
+        <div class="container">
+          <p class="section-label reveal">آلية العمل</p>
+          <h2 class="reveal">خطوات واضحة من الفكرة إلى التسليم</h2>
+          <ol class="timeline">
+            <li class="reveal"><strong>1) اكتشاف</strong><span>جلسة تعريفية لفهم الأهداف والجمهور.</span></li>
+            <li class="reveal"><strong>2) اتجاه بصري</strong><span>بناء Moodboard وتحديد نمط التصميم.</span></li>
+            <li class="reveal"><strong>3) التنفيذ</strong><span>تصميم وتسليم أولي مع جولات مراجعة.</span></li>
+            <li class="reveal"><strong>4) التسليم النهائي</strong><span>ملفات منظمة + دليل استخدام جاهز.</span></li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="contact" class="section container contact">
+        <div class="reveal">
+          <p class="section-label">تواصل</p>
+          <h2>لنحوّل فكرتك إلى هوية تُباع وتبقى في الذاكرة</h2>
+          <p>
+            املأ النموذج وسأتواصل معك خلال 24 ساعة برسالة تتضمن التصور، المدة،
+            والتكلفة المناسبة.
+          </p>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm" novalidate>
+          <label for="name">الاسم</label>
+          <input id="name" type="text" name="name" minlength="2" required />
+
+          <label for="email">البريد الإلكتروني</label>
+          <input id="email" type="email" name="email" required />
+
+          <label for="service">نوع الخدمة</label>
+          <select id="service" name="service" required>
+            <option value="">اختر خدمة</option>
+            <option>هوية بصرية</option>
+            <option>تصميم سوشال ميديا</option>
+            <option>تصميم تغليف</option>
+            <option>حملة إعلانية</option>
+            <option>أخرى</option>
+          </select>
+
+          <label for="message">نبذة عن المشروع</label>
+          <textarea id="message" name="message" rows="4" minlength="15" required></textarea>
+
+          <button class="btn primary" type="submit">إرسال الطلب</button>
+          <p class="form-feedback" id="formFeedback" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 ليان ستوديو — جميع الحقوق محفوظة.</p>
+      <a href="#top">العودة للأعلى ↑</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
