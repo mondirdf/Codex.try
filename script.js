@@ -1,3 +1,4 @@
+document.documentElement.classList.add('js');
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navMenu');
 const shuffleBtn = document.getElementById('shuffleBtn');
@@ -59,7 +60,8 @@ if (filterButtons.length) {
 
       if (projectsStatus) {
         const visibleCount = Array.from(projectCards).filter((card) => !card.hidden).length;
-        projectsStatus.textContent = `تم عرض ${visibleCount} مشاريع ضمن فلتر ${button.textContent?.trim()}.`;
+        const filterLabel = button.textContent ? button.textContent.trim() : '';
+        projectsStatus.textContent = `تم عرض ${visibleCount} مشاريع ضمن فلتر ${filterLabel}.`;
       }
     });
   });
@@ -107,16 +109,20 @@ if (contactForm && formFeedback) {
   });
 }
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.15 },
-);
+if ('IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 },
+  );
 
-revealItems.forEach((item) => revealObserver.observe(item));
+  revealItems.forEach((item) => revealObserver.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add('show'));
+}
