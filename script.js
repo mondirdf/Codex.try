@@ -76,36 +76,61 @@ if (contactForm && formFeedback) {
     const email = String(formData.get('email') || '').trim();
     const service = String(formData.get('service') || '').trim();
     const message = String(formData.get('message') || '').trim();
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
 
     formFeedback.className = 'form-feedback';
+    formFeedback.textContent = '';
+    const inputs = contactForm.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => input.setAttribute('aria-invalid', 'false'));
+
+    const setError = (elementId, messageText) => {
+      formFeedback.textContent = messageText;
+      formFeedback.classList.add('error');
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.setAttribute('aria-invalid', 'true');
+        element.focus();
+      }
+    };
 
     if (name.length < 2) {
-      formFeedback.textContent = 'يرجى كتابة اسم صحيح (حرفان على الأقل).';
-      formFeedback.classList.add('error');
+      setError('name', 'يرجى كتابة اسم صحيح (حرفان على الأقل).');
       return;
     }
 
     if (!email.includes('@') || !email.includes('.')) {
-      formFeedback.textContent = 'يرجى إدخال بريد إلكتروني صحيح.';
-      formFeedback.classList.add('error');
+      setError('email', 'يرجى إدخال بريد إلكتروني صحيح.');
       return;
     }
 
     if (!service) {
-      formFeedback.textContent = 'يرجى اختيار نوع الخدمة المطلوبة.';
-      formFeedback.classList.add('error');
+      setError('service', 'يرجى اختيار نوع الخدمة المطلوبة.');
       return;
     }
 
     if (message.length < 15) {
-      formFeedback.textContent = 'يرجى كتابة نبذة أوضح عن المشروع (15 حرفًا على الأقل).';
-      formFeedback.classList.add('error');
+      setError('message', 'يرجى كتابة نبذة أوضح عن المشروع (15 حرفًا على الأقل).');
       return;
     }
 
-    formFeedback.textContent = `شكرًا ${name}، تم استلام طلبك بنجاح وسيتم التواصل معك خلال 24 ساعة.`;
-    formFeedback.classList.add('success');
-    contactForm.reset();
+    // Simulated Loading State
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      const originalBtnText = submitBtn.textContent;
+      submitBtn.textContent = 'جاري الإرسال...';
+
+      setTimeout(() => {
+        formFeedback.textContent = `شكرًا ${name}، تم استلام طلبك بنجاح وسيتم التواصل معك خلال 24 ساعة.`;
+        formFeedback.classList.add('success');
+        contactForm.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+      }, 800);
+    } else {
+      formFeedback.textContent = `شكرًا ${name}، تم استلام طلبك بنجاح وسيتم التواصل معك خلال 24 ساعة.`;
+      formFeedback.classList.add('success');
+      contactForm.reset();
+    }
   });
 }
 

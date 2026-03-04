@@ -212,14 +212,14 @@
         </div>
 
         <form class="contact-form reveal" id="contactForm" novalidate>
-          <label for="name">الاسم</label>
-          <input id="name" type="text" name="name" minlength="2" required />
+          <label for="name">الاسم <span class="required" aria-hidden="true">*</span></label>
+          <input id="name" type="text" name="name" minlength="2" autocomplete="name" aria-required="true" required />
 
-          <label for="email">البريد الإلكتروني</label>
-          <input id="email" type="email" name="email" required />
+          <label for="email">البريد الإلكتروني <span class="required" aria-hidden="true">*</span></label>
+          <input id="email" type="email" name="email" autocomplete="email" aria-required="true" required />
 
-          <label for="service">نوع الخدمة</label>
-          <select id="service" name="service" required>
+          <label for="service">نوع الخدمة <span class="required" aria-hidden="true">*</span></label>
+          <select id="service" name="service" aria-required="true" required>
             <option value="">اختر خدمة</option>
             <option>هوية بصرية</option>
             <option>تصميم سوشال ميديا</option>
@@ -228,8 +228,8 @@
             <option>أخرى</option>
           </select>
 
-          <label for="message">نبذة عن المشروع</label>
-          <textarea id="message" name="message" rows="4" minlength="15" required></textarea>
+          <label for="message">نبذة عن المشروع <span class="required" aria-hidden="true">*</span></label>
+          <textarea id="message" name="message" rows="4" minlength="15" aria-required="true" required></textarea>
 
           <button class="btn primary" type="submit">إرسال الطلب</button>
           <p class="form-feedback" id="formFeedback" aria-live="polite"></p>

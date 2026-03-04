@@ -454,6 +454,22 @@ h2 {
   color: var(--accent);
 }
 
+.required {
+  color: #d32f2f;
+  margin-inline-start: 4px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  filter: grayscale(0.5);
+}
+
+[aria-invalid="true"] {
+  border-color: #d32f2f !important;
+  box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.2);
+}
+
 .site-footer {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1rem 4vw;
