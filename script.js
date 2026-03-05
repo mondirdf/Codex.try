@@ -84,27 +84,49 @@ if (contactForm && formFeedback) {
       formSecondaryCta.textContent = '';
     }
 
+    const fields = contactForm.querySelectorAll('input, select, textarea');
+    fields.forEach((field) => {
+      field.setAttribute('aria-invalid', 'false');
+      field.removeAttribute('aria-describedby');
+    });
+
     if (name.length < 2) {
+      const nameInput = contactForm.querySelector('#name');
       formFeedback.textContent = 'حقل الاسم: اكتب اسمك الحقيقي بحيث لا يقل عن حرفين.';
       formFeedback.classList.add('error');
+      nameInput.setAttribute('aria-invalid', 'true');
+      nameInput.setAttribute('aria-describedby', 'formFeedback');
+      nameInput.focus();
       return;
     }
 
     if (!email.includes('@') || !email.includes('.')) {
+      const emailInput = contactForm.querySelector('#email');
       formFeedback.textContent = 'حقل البريد الإلكتروني: أدخل بريدًا صالحًا مثل name@example.com.';
       formFeedback.classList.add('error');
+      emailInput.setAttribute('aria-invalid', 'true');
+      emailInput.setAttribute('aria-describedby', 'formFeedback');
+      emailInput.focus();
       return;
     }
 
     if (!service) {
+      const serviceSelect = contactForm.querySelector('#service');
       formFeedback.textContent = 'حقل نوع الخدمة: اختر الخدمة الأقرب لاحتياج مشروعك.';
       formFeedback.classList.add('error');
+      serviceSelect.setAttribute('aria-invalid', 'true');
+      serviceSelect.setAttribute('aria-describedby', 'formFeedback');
+      serviceSelect.focus();
       return;
     }
 
     if (message.length < 15) {
+      const messageTextarea = contactForm.querySelector('#message');
       formFeedback.textContent = 'حقل نبذة المشروع: أضف تفاصيل أكثر (الهدف، الجمهور، والمدة) بحد أدنى 15 حرفًا.';
       formFeedback.classList.add('error');
+      messageTextarea.setAttribute('aria-invalid', 'true');
+      messageTextarea.setAttribute('aria-describedby', 'formFeedback');
+      messageTextarea.focus();
       return;
     }
 

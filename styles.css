@@ -440,6 +440,12 @@ h2 {
   outline-offset: 2px;
 }
 
+[aria-invalid="true"] {
+  border-color: var(--danger) !important;
+  outline: 2px solid var(--danger);
+  outline-offset: 2px;
+}
+
 .form-feedback {
   min-height: 1.5rem;
   font-weight: 700;
