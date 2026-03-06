@@ -457,6 +457,10 @@ h2 {
   margin-bottom: 0.25rem;
 }
 
+.required-star {
+  color: #d93025;
+}
+
 .contact-form input,
 .contact-form select,
 .contact-form textarea {
@@ -487,7 +491,7 @@ h2 {
 }
 
 .form-feedback.error {
-  color: var(--danger);
+  color: #d93025;
 }
 
 .form-feedback.success {
