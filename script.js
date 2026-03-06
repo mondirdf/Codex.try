@@ -1,6 +1,7 @@
 document.documentElement.classList.add('js');
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navMenu');
+const navBackdrop = document.getElementById('navBackdrop');
 const shuffleBtn = document.getElementById('shuffleBtn');
 const projectsGrid = document.getElementById('projectsGrid');
 const filterButtons = document.querySelectorAll('.filter-btn');
@@ -12,16 +13,40 @@ const formSecondaryCta = document.getElementById('formSecondaryCta');
 const revealItems = document.querySelectorAll('.reveal');
 
 if (navToggle && navLinks) {
-  navToggle.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
+  const setMenuState = (isOpen) => {
+    navLinks.classList.toggle('open', isOpen);
+    navLinks.setAttribute('aria-hidden', String(!isOpen));
+    navBackdrop?.classList.toggle('open', isOpen);
     navToggle.setAttribute('aria-expanded', String(isOpen));
+    document.body.classList.toggle('nav-open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  };
+
+  const closeNavMenu = () => setMenuState(false);
+
+  setMenuState(false);
+
+  navToggle.addEventListener('click', () => {
+    const isOpen = !navLinks.classList.contains('open');
+    setMenuState(isOpen);
+  });
+
+  navBackdrop?.addEventListener('click', closeNavMenu);
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeNavMenu();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) {
+      closeNavMenu();
+    }
   });
 
   navLinks.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', closeNavMenu);
   });
 }
 
