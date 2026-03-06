@@ -97,6 +97,12 @@ if (contactForm && formFeedback) {
   contactForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
+    const inputs = contactForm.querySelectorAll('input, select, textarea');
+    inputs.forEach((input) => {
+      input.setAttribute('aria-invalid', 'false');
+      input.removeAttribute('aria-describedby');
+    });
+
     const formData = new FormData(contactForm);
     const name = String(formData.get('name') || '').trim();
     const email = String(formData.get('email') || '').trim();
@@ -109,34 +115,42 @@ if (contactForm && formFeedback) {
       formSecondaryCta.textContent = '';
     }
 
-    if (name.length < 2) {
-      formFeedback.textContent = 'حقل الاسم: اكتب اسمك الحقيقي بحيث لا يقل عن حرفين.';
+    const showError = (fieldId, errorMessage) => {
+      formFeedback.textContent = errorMessage;
       formFeedback.classList.add('error');
+      const field = document.getElementById(fieldId);
+      if (field) {
+        field.setAttribute('aria-invalid', 'true');
+        field.setAttribute('aria-describedby', 'formFeedback');
+        field.focus();
+      }
+    };
+
+    if (name.length < 2) {
+      showError('name', 'حقل الاسم: اكتب اسمك الحقيقي بحيث لا يقل عن حرفين.');
       return;
     }
 
     if (!email.includes('@') || !email.includes('.')) {
-      formFeedback.textContent = 'حقل البريد الإلكتروني: أدخل بريدًا صالحًا مثل name@example.com.';
-      formFeedback.classList.add('error');
+      showError('email', 'حقل البريد الإلكتروني: أدخل بريدًا صالحًا مثل name@example.com.');
       return;
     }
 
     if (!service) {
-      formFeedback.textContent = 'حقل نوع الخدمة: اختر الخدمة الأقرب لاحتياج مشروعك.';
-      formFeedback.classList.add('error');
+      showError('service', 'حقل نوع الخدمة: اختر الخدمة الأقرب لاحتياج مشروعك.');
       return;
     }
 
     if (message.length < 15) {
-      formFeedback.textContent = 'حقل نبذة المشروع: أضف تفاصيل أكثر (الهدف، الجمهور، والمدة) بحد أدنى 15 حرفًا.';
-      formFeedback.classList.add('error');
+      showError('message', 'حقل نبذة المشروع: أضف تفاصيل أكثر (الهدف، الجمهور، والمدة) بحد أدنى 15 حرفًا.');
       return;
     }
 
     formFeedback.textContent = `شكرًا ${name}، تم استلام طلبك بنجاح وسيتم التواصل معك خلال 24 ساعة.`;
     formFeedback.classList.add('success');
     if (formSecondaryCta) {
-      formSecondaryCta.innerHTML = 'خطوة إضافية سريعة: تابعنا على المنصات أو أرسل ملفاتك المرجعية إلى <a href="mailto:hello@lianstudio.com">hello@lianstudio.com</a>.';
+      formSecondaryCta.innerHTML =
+        'خطوة إضافية سريعة: تابعنا على المنصات أو أرسل ملفاتك المرجعية إلى <a href="mailto:hello@lianstudio.com">hello@lianstudio.com</a>.';
       formSecondaryCta.hidden = false;
     }
     contactForm.reset();
