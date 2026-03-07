@@ -103,33 +103,42 @@ if (contactForm && formFeedback) {
     const service = String(formData.get('service') || '').trim();
     const message = String(formData.get('message') || '').trim();
 
+    const fields = contactForm.querySelectorAll('input, select, textarea');
+    fields.forEach((field) => field.removeAttribute('aria-invalid'));
+
     formFeedback.className = 'form-feedback';
     if (formSecondaryCta) {
       formSecondaryCta.hidden = true;
       formSecondaryCta.textContent = '';
     }
 
-    if (name.length < 2) {
-      formFeedback.textContent = 'حقل الاسم: اكتب اسمك الحقيقي بحيث لا يقل عن حرفين.';
+    const setError = (fieldId, msg) => {
+      formFeedback.textContent = msg;
       formFeedback.classList.add('error');
+      const field = document.getElementById(fieldId);
+      if (field) {
+        field.setAttribute('aria-invalid', 'true');
+        field.focus();
+      }
+    };
+
+    if (name.length < 2) {
+      setError('name', 'حقل الاسم: اكتب اسمك الحقيقي بحيث لا يقل عن حرفين.');
       return;
     }
 
     if (!email.includes('@') || !email.includes('.')) {
-      formFeedback.textContent = 'حقل البريد الإلكتروني: أدخل بريدًا صالحًا مثل name@example.com.';
-      formFeedback.classList.add('error');
+      setError('email', 'حقل البريد الإلكتروني: أدخل بريدًا صالحًا مثل name@example.com.');
       return;
     }
 
     if (!service) {
-      formFeedback.textContent = 'حقل نوع الخدمة: اختر الخدمة الأقرب لاحتياج مشروعك.';
-      formFeedback.classList.add('error');
+      setError('service', 'حقل نوع الخدمة: اختر الخدمة الأقرب لاحتياج مشروعك.');
       return;
     }
 
     if (message.length < 15) {
-      formFeedback.textContent = 'حقل نبذة المشروع: أضف تفاصيل أكثر (الهدف، الجمهور، والمدة) بحد أدنى 15 حرفًا.';
-      formFeedback.classList.add('error');
+      setError('message', 'حقل نبذة المشروع: أضف تفاصيل أكثر (الهدف، الجمهور، والمدة) بحد أدنى 15 حرفًا.');
       return;
     }
 
