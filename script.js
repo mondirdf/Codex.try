@@ -98,43 +98,66 @@ if (contactForm && formFeedback) {
     event.preventDefault();
 
     const formData = new FormData(contactForm);
+    const fields = {
+      name: contactForm.querySelector('#name'),
+      email: contactForm.querySelector('#email'),
+      service: contactForm.querySelector('#service'),
+      message: contactForm.querySelector('#message')
+    };
+
     const name = String(formData.get('name') || '').trim();
     const email = String(formData.get('email') || '').trim();
     const service = String(formData.get('service') || '').trim();
     const message = String(formData.get('message') || '').trim();
 
+    // Reset feedback and states
+    Object.values(fields).forEach(field => {
+      if (field) {
+        field.removeAttribute('aria-invalid');
+        field.removeAttribute('aria-describedby');
+      }
+    });
     formFeedback.className = 'form-feedback';
+    formFeedback.setAttribute('aria-live', 'polite');
     if (formSecondaryCta) {
       formSecondaryCta.hidden = true;
       formSecondaryCta.textContent = '';
     }
 
-    if (name.length < 2) {
-      formFeedback.textContent = 'حقل الاسم: اكتب اسمك الحقيقي بحيث لا يقل عن حرفين.';
+    const setError = (field, msg) => {
+      formFeedback.textContent = msg;
       formFeedback.classList.add('error');
+      formFeedback.setAttribute('aria-live', 'assertive');
+      if (field) {
+        field.setAttribute('aria-invalid', 'true');
+        field.setAttribute('aria-describedby', 'formFeedback');
+        field.focus();
+      }
+    };
+
+    if (name.length < 2) {
+      setError(fields.name, 'حقل الاسم: اكتب اسمك الحقيقي بحيث لا يقل عن حرفين.');
       return;
     }
 
     if (!email.includes('@') || !email.includes('.')) {
-      formFeedback.textContent = 'حقل البريد الإلكتروني: أدخل بريدًا صالحًا مثل name@example.com.';
-      formFeedback.classList.add('error');
+      setError(fields.email, 'حقل البريد الإلكتروني: أدخل بريدًا صالحًا مثل name@example.com.');
       return;
     }
 
     if (!service) {
-      formFeedback.textContent = 'حقل نوع الخدمة: اختر الخدمة الأقرب لاحتياج مشروعك.';
-      formFeedback.classList.add('error');
+      setError(fields.service, 'حقل نوع الخدمة: اختر الخدمة الأقرب لاحتياج مشروعك.');
       return;
     }
 
     if (message.length < 15) {
-      formFeedback.textContent = 'حقل نبذة المشروع: أضف تفاصيل أكثر (الهدف، الجمهور، والمدة) بحد أدنى 15 حرفًا.';
-      formFeedback.classList.add('error');
+      setError(fields.message, 'حقل نبذة المشروع: أضف تفاصيل أكثر (الهدف، الجمهور، والمدة) بحد أدنى 15 حرفًا.');
       return;
     }
 
     formFeedback.textContent = `شكرًا ${name}، تم استلام طلبك بنجاح وسيتم التواصل معك خلال 24 ساعة.`;
     formFeedback.classList.add('success');
+    formFeedback.setAttribute('aria-live', 'polite');
     if (formSecondaryCta) {
       formSecondaryCta.innerHTML = 'خطوة إضافية سريعة: تابعنا على المنصات أو أرسل ملفاتك المرجعية إلى <a href="mailto:hello@lianstudio.com">hello@lianstudio.com</a>.';
       formSecondaryCta.hidden = false;
