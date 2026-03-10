@@ -103,33 +103,48 @@ if (contactForm && formFeedback) {
     const service = String(formData.get('service') || '').trim();
     const message = String(formData.get('message') || '').trim();
 
-    formFeedback.className = 'form-feedback';
+    formFeedback.classList.remove('error', 'success');
     if (formSecondaryCta) {
       formSecondaryCta.hidden = true;
       formSecondaryCta.textContent = '';
     }
 
+    const fields = contactForm.querySelectorAll('input, select, textarea');
+    fields.forEach((field) => field.setAttribute('aria-invalid', 'false'));
+
     if (name.length < 2) {
+      const field = contactForm.querySelector('#name');
       formFeedback.textContent = 'حقل الاسم: اكتب اسمك الحقيقي بحيث لا يقل عن حرفين.';
       formFeedback.classList.add('error');
+      field.setAttribute('aria-invalid', 'true');
+      field.focus();
       return;
     }
 
     if (!email.includes('@') || !email.includes('.')) {
+      const field = contactForm.querySelector('#email');
       formFeedback.textContent = 'حقل البريد الإلكتروني: أدخل بريدًا صالحًا مثل name@example.com.';
       formFeedback.classList.add('error');
+      field.setAttribute('aria-invalid', 'true');
+      field.focus();
       return;
     }
 
     if (!service) {
+      const field = contactForm.querySelector('#service');
       formFeedback.textContent = 'حقل نوع الخدمة: اختر الخدمة الأقرب لاحتياج مشروعك.';
       formFeedback.classList.add('error');
+      field.setAttribute('aria-invalid', 'true');
+      field.focus();
       return;
     }
 
     if (message.length < 15) {
+      const field = contactForm.querySelector('#message');
       formFeedback.textContent = 'حقل نبذة المشروع: أضف تفاصيل أكثر (الهدف، الجمهور، والمدة) بحد أدنى 15 حرفًا.';
       formFeedback.classList.add('error');
+      field.setAttribute('aria-invalid', 'true');
+      field.focus();
       return;
     }
 
@@ -140,6 +155,16 @@ if (contactForm && formFeedback) {
       formSecondaryCta.hidden = false;
     }
     contactForm.reset();
+  });
+
+  contactForm.querySelectorAll('input, select, textarea').forEach((field) => {
+    field.addEventListener('input', () => {
+      field.setAttribute('aria-invalid', 'false');
+      if (!contactForm.querySelector('[aria-invalid="true"]')) {
+        formFeedback.textContent = '';
+        formFeedback.classList.remove('error', 'success');
+      }
+    });
   });
 }
 
