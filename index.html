@@ -69,10 +69,26 @@
           <p>إعادة تصميم هوية علامة قهوة مختصة مع نظام تعبئة وتغليف كامل.</p>
 
           <div class="swatches" aria-label="لوحة الألوان">
-            <span style="--swatch:#1f1838"></span>
-            <span style="--swatch:#5d4b8b"></span>
-            <span style="--swatch:#b8a4ff"></span>
-            <span style="--swatch:#f6f2ff"></span>
+            <span
+              style="--swatch: #1f1838"
+              role="img"
+              aria-label="أرجواني داكن جداً"
+            ></span>
+            <span
+              style="--swatch: #5d4b8b"
+              role="img"
+              aria-label="أرجواني متوسط"
+            ></span>
+            <span
+              style="--swatch: #b8a4ff"
+              role="img"
+              aria-label="ليلكي فاتح"
+            ></span>
+            <span
+              style="--swatch: #f6f2ff"
+              role="img"
+              aria-label="ليلكي شاحب"
+            ></span>
           </div>
 
           <ul class="project-meta">
@@ -230,13 +246,34 @@
 
         <form class="contact-form reveal" id="contactForm" novalidate>
           <label for="name">الاسم</label>
-          <input id="name" type="text" name="name" minlength="2" required />
+          <input
+            id="name"
+            type="text"
+            name="name"
+            minlength="2"
+            required
+            aria-required="true"
+            aria-describedby="formFeedback"
+          />
 
           <label for="email">البريد الإلكتروني</label>
-          <input id="email" type="email" name="email" required />
+          <input
+            id="email"
+            type="email"
+            name="email"
+            required
+            aria-required="true"
+            aria-describedby="formFeedback"
+          />
 
           <label for="service">نوع الخدمة</label>
-          <select id="service" name="service" required>
+          <select
+            id="service"
+            name="service"
+            required
+            aria-required="true"
+            aria-describedby="formFeedback"
+          >
             <option value="">اختر خدمة</option>
             <option>هوية بصرية</option>
             <option>تصميم سوشال ميديا</option>
@@ -253,6 +290,8 @@
             minlength="15"
             placeholder="اذكر هدف المشروع، الجمهور المستهدف، والنتيجة التي تتوقعها باختصار."
             required
+            aria-required="true"
+            aria-describedby="formFeedback"
           ></textarea>
 
           <button class="btn primary" type="submit">إرسال الطلب</button>
