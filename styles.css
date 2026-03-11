@@ -457,6 +457,16 @@ h2 {
   margin-bottom: 0.25rem;
 }
 
+.required {
+  color: var(--danger);
+  margin-inline-start: 4px;
+}
+
+[aria-invalid="true"] {
+  border-color: var(--danger) !important;
+  box-shadow: 0 0 0 2px rgba(74, 74, 74, 0.15);
+}
+
 .contact-form input,
 .contact-form select,
 .contact-form textarea {
