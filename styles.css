@@ -457,6 +457,11 @@ h2 {
   margin-bottom: 0.25rem;
 }
 
+.required-marker {
+  color: var(--danger);
+  margin-right: 2px;
+}
+
 .contact-form input,
 .contact-form select,
 .contact-form textarea {
